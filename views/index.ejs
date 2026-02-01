@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wanderlust</title>
-</head>
-<body>
-    <h1>All listings</h1>
-    <form action="/new" method="get">
-        <button>create a new list</button>
-    </form>
-    <br>
-       <% for(list of lists){ %>
-        <a href="/index/<%=list._id%>"><%=list.title %></a>
-        <br><br>
-        <% } %>
-</body>
-</html>
-=======
 <%layout("layouts/boilerplate") %>
     <h1>All listings</h1>
     <br>
@@ -44,4 +23,3 @@
         <% } %>
         </div>
        
->>>>>>> 13abb03 (styling 1)
