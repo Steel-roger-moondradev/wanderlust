@@ -1,0 +1,47 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderlust</title>
+</head>
+<body>
+    <h1>All listings</h1>
+    <form action="/new" method="get">
+        <button>create a new list</button>
+    </form>
+    <br>
+       <% for(list of lists){ %>
+        <a href="/index/<%=list._id%>"><%=list.title %></a>
+        <br><br>
+        <% } %>
+</body>
+</html>
+=======
+<%layout("layouts/boilerplate") %>
+    <h1>All listings</h1>
+    <br>
+    
+        <div class="row g-4">
+            <% for(list of lists){ %>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="card h-100 " style="width: 18rem;">
+                <div class="image-cards h-100">
+                   <% if(list.image.url){%>
+                        <img src="<%=list.image.url%>" class="card-img-top" alt="..."> 
+                    <%}else{%>
+                        <div class="card-img-placeholder bg-light"></div> 
+                   <% }%>
+                    
+                </div>
+                <div class="card-body">
+                    <p><%=list.title %></p>
+                </div>
+            </div>
+            </div>
+            <br><br>
+        <% } %>
+        </div>
+       
+>>>>>>> 13abb03 (styling 1)

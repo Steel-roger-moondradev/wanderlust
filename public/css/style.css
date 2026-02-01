@@ -1,0 +1,52 @@
+.navbar{
+    height:5rem;
+    background-color:white;
+}
+.nav-link{
+    margin-right:2rem;
+    display:flex;
+    flex-direction:row;
+    align-items: center;
+    color:#222222
+}
+.fa-house{
+    color:#FF5A5F;
+    font-size:2rem;
+}
+.footer{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    background-color:#DDDDDD;
+}
+.fa-brands{
+    font-size:1.5rem;
+    margin-top:0.3rem;
+}
+.f-info-info{
+    margin-top:0.3rem;
+    margin-bottom:0.3rem;
+}
+.info-footer{
+    text-decoration-line:none;
+    margin-right:0.4rem;
+}
+/* cards*/
+
+.card-body,.image-cards{
+    padding:0;
+}
+.card{
+    border:none;
+}
+.card-img-top{
+    height:220px;
+    overflow:hidden;
+    width:100%;
+}
+.image-cards{
+     border-radius:1.5rem;
+    width:100%;
+    height:100px;
+    overflow: hidden; 
+}

@@ -1,0 +1,39 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderlust</title>
+</head>
+<body>
+=======
+      <%layout("layouts/boilerplate")%>
+>>>>>>> 13abb03 (styling 1)
+    <h2>Listing details </h2>
+    <ul>
+        <li><%=list.title %></li>
+        <li><%=list.description %></li>
+        <li>&#8377;<%=list.price.toLocaleString("en-IN")%></li>
+        <li><%=list.country %></li>
+        <li><%=list.location %></li>
+        <br>
+        <li>
+            <form action="/edit/<%=list._id %>" method="get">
+                <button>edit</button>
+            </form>
+            <br><br>
+            <li>
+                <form action="/<%=list._id %>?_method=delete" method="post">
+                    <button>delete</button>
+                </form>
+            </li>
+        </li>
+    </ul>
+<<<<<<< HEAD
+    
+</body>
+</html>
+=======
+    
+>>>>>>> 13abb03 (styling 1)
