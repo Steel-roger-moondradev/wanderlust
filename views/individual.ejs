@@ -1,22 +1,29 @@
       <%layout("layouts/boilerplate")%>
-    <h2>Listing details </h2>
-    <ul>
-        <li><%=list.title %></li>
-        <li><%=list.description %></li>
-        <li>&#8377;<%=list.price.toLocaleString("en-IN")%></li>
-        <li><%=list.country %></li>
-        <li><%=list.location %></li>
-        <br>
-        <li>
-            <form action="/edit/<%=list._id %>" method="get">
-                <button>edit</button>
-            </form>
-            <br><br>
-            <li>
-                <form action="/<%=list._id %>?_method=delete" method="post">
-                    <button>delete</button>
+      
+      <div class="individual-data offset-4">
+        <h1>Listing details</h1>
+         <div class="card" style="width: 30rem;">
+        <img class="card-img-top" src="<%=list.image.url%>" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title"><%=list.title%></h5>
+            <p class="card-text"><%=list.description%></p>
+            <p class="card-text">&#8377;<%=list.price.toLocaleString("en-IN")%></p>
+            <p class="card-text"><%=list.country %></p>
+             <p class="card-text"><%=list.location %></p>
+             <br>
+             <div class="btns-edit-delete ">
+                <form action="/edit/<%=list._id %>" class="btns-edit" method="get">
+                    <button>Edit</button>
                 </form>
-            </li>
-        </li>
-    </ul>
+                <form action="/<%=list._id %>?_method=delete" class="btns-delete" method="post">
+                    <button>Delete</button>
+                </form>
+             </div>
+            
+        </div>
+        </div>
+      </div>
+
+     
+    
     

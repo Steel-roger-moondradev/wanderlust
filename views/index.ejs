@@ -2,22 +2,27 @@
     <h1>All listings</h1>
     <br>
     
-        <div class="row g-4">
+        <div class="row justify-content-evenly g-4">
             <% for(list of lists){ %>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-            <div class="card h-100 " style="width: 18rem;">
-                <div class="image-cards h-100">
-                   <% if(list.image.url){%>
-                        <img src="<%=list.image.url%>" class="card-img-top" alt="..."> 
-                    <%}else{%>
-                        <div class="card-img-placeholder bg-light"></div> 
-                   <% }%>
-                    
-                </div>
-                <div class="card-body">
-                    <p><%=list.title %></p>
-                </div>
-            </div>
+                <div class=" col-auto ">
+                    <a href="/index/<%= list._id%>" class="card-link-individual" > 
+                        <div class="card h-100 " style="width: 18rem;">
+                            <div class="image-cards h-100">
+                            <% if(list.image.url){%>
+                                    <img src="<%=list.image.url%>" class="card-img-top" alt="..."> 
+                                <%}else{%>
+                                    <div class="card-img-placeholder bg-light"></div> 
+                            <% }%>
+                                
+                            </div>
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <p><b><%=list.title %></b></p>
+                                    <p>&#8377;<%=list.price.toLocaleString("en-IN")%>/night</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
             </div>
             <br><br>
         <% } %>

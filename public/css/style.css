@@ -1,3 +1,22 @@
+body {
+  font-family: "Open Sans", system-ui, -apple-system,
+               BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+               display:flex;
+               flex-direction:column;
+               min-height:100vh;
+
+}
+/* new*/
+.container{
+    flex:1;
+}
+.add-btn{
+    border:none;
+    background-color: #FF5A5F;
+    border-radius: 0.5rem;
+}
+
+/*nav bar*/
 .navbar{
     height:5rem;
     background-color:white;
@@ -49,4 +68,57 @@
     width:100%;
     height:100px;
     overflow: hidden; 
+}
+.card-text p{
+    font-weight:400 !important;
+    
+}
+.card-link-individual{
+    text-decoration-line:none !important;
+}
+.card-img-top:hover{
+    opacity:0.8;
+}
+/*forms */
+
+.new-form{
+    margin-left:2rem;
+}
+/*show listings*/
+.btns-edit-delete{
+    display:flex;
+    flex-direction:row;
+     border:none !important;
+}
+.btns-edit button {
+    margin-right: 3rem;
+    border: none !important;
+    border-radius: 0.5rem !important;
+    background-color: #FF5A5F;
+    color:white;
+     padding:0.2rem;
+     padding-left: 0.8rem;
+     padding-right: 0.8rem;
+}
+.btns-delete button{
+    padding:0.2rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    margin-right: 3rem;
+    border: none !important;
+    border-radius: 0.5rem !important;
+    background-color: #FF5A5F;
+    color:rgb(255, 255, 255);
+    background-color: #222222;
+    
+}
+.card-img-top{
+    border-radius:2rem;
+}
+.card-text{
+    margin-bottom:0;
+}
+/*edit*/
+.add-btn{
+    color:white;
 }

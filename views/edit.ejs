@@ -1,20 +1,88 @@
 <% layout("layouts/boilerplate") %>
 
-<form action="/<%= list._id %>?_method=patch" method="post">
-    <input type="text" placeholder="write your title" name="listing[title]" value="<%= list.title %>"/>
-    <br><br>
+<div class="row">
+  <div class="col-6 offset-3">
+    <div class="new-form">
+      <h1>Edit Listing</h1>
 
-    <textarea placeholder="write your description" name="listing[description]"><%= list.description %></textarea>
-    <br><br>
+      <form action="/<%= list._id %>?_method=patch" method="post">
 
-    <input type="number" placeholder="price" name="listing[price]" value="<%= list.price %>"/>
-    <br><br>
+        <!-- Title -->
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          id="title"
+          class="form-control"
+          placeholder="write your title"
+          name="listing[title]"
+          value="<%= list.title %>"
+        />
+        <br>
 
-    <input type="text" placeholder="write your country" name="listing[country]" value="<%= list.country %>"/>
-    <br><br>
+        <!-- Description -->
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          class="form-control"
+          placeholder="write your description"
+          name="listing[description]"
+        ><%= list.description %></textarea>
+        <br>
 
-    <input type="text" placeholder="write your location" name="listing[location]" value="<%= list.location %>"/>
-    <br><br>
+        <label for="image" class="form-label">Image URL</label>
+<input
+  type="url"
+  id="image"
+  class="form-control"
+  placeholder="paste image url"
+  name="listing[image][url]"
+>
+        <!-- Price + Country -->
+        <div class="row">
+          <div class="price col-12 col-sm-5">
+            <label for="price" class="form-label">Price</label>
+            <input
+              id="price"
+              class="form-control"
+              type="number"
+              step="100"
+              min="0"
+              placeholder="price"
+              name="listing[price]"
+              value="<%= list.price %>"
+            />
+          </div>
 
-    <button>edit</button>
-</form>
+          <div class="country col-12 col-sm-7">
+            <label for="country" class="form-label">Country</label>
+            <input
+              type="text"
+              id="country"
+              class="form-control"
+              placeholder="write your country"
+              name="listing[country]"
+              value="<%= list.country %>"
+            />
+            <br>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <label for="location" class="form-label">Location</label>
+        <input
+          type="text"
+          id="location"
+          class="form-control"
+          placeholder="write your location"
+          name="listing[location]"
+          value="<%= list.location %>"
+        />
+        <br>
+
+        <!-- Submit -->
+        <button class="add-btn">Update</button>
+
+      </form>
+    </div>
+  </div>
+</div>

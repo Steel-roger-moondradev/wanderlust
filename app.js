@@ -39,8 +39,8 @@ app.get("/new",(req,res)=>{
 })
 //new route
 app.post("/new",async(req,res)=>{
-    let list=req.body.listing;
-    await listing.insertOne(list);
+    let list=new listing(req.body.listing);
+     await list.save();
     res.redirect("/index");
 })
 app.get("/edit/:id",async(req,res)=>{
