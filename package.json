@@ -2,7 +2,9 @@
   "name": "wanderlust",
   "version": "1.0.0",
   "description": "First project",
-  "keywords": ["wanderlust"],
+  "keywords": [
+    "wanderlust"
+  ],
   "license": "ISC",
   "author": "Dev moondra",
   "type": "commonjs",
@@ -15,6 +17,7 @@
     "ejs": "^3.1.9",
     "ejs-mate": "^4.0.0",
     "express": "^4.19.2",
+    "joi": "^18.0.2",
     "method-override": "^3.0.0",
     "mongoose": "^8.0.0"
   },

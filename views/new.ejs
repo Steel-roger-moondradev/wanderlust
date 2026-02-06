@@ -3,39 +3,52 @@
         <div class="col-6 offset-3">
         <div class="new-form">
             <h1>Create new listings</h1>
-            <form action="/new" method="post">
-                <label for="Title" class="form-label">Title</label>
-                <input type="text" id="Title" class="form-control" placeholder="write your title" name="listing[title]"/>
-                <br>
-                <label for="description" class="form-label">Description</label>
-                <textarea id="description" class="form-control" placeholder="write your description" name="listing[description]"></textarea><br>
-
-                <label for="image" class="form-label">Image URL</label>
-<input
-  type="url"
-  id="image"
-  class="form-control"
-  placeholder="paste image url"
-  name="listing[image][url]"
->
-<br>
-
-                <div class="row">
+            <form action="/new" method="post"  class="needs-validation" novalidate >
+                <div>
+                    <label for="Title" class="form-label">Title</label>
+                    <input type="text" id="Title" class="form-control" placeholder="write your title" name="listing[title]" required/>
+                     <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div>
+                    <label for="description" class="form-label">Description</label>
+                    <textarea id="description" class="form-control" placeholder="write your description" name="listing[description]" required></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div>
+                    <label for="image" class="form-label">Image URL</label>
+                    <input type="url" id="image" class="form-control" placeholder="paste image url" name="listing[image][url]">
+                    <div class="invalid-feedback">
+                                Paste a valid URL
+                            </div>
+                </div>
+               <div class="row">
                         <div class="price col-12 col-sm-5">
                             <label for="price" class="form-label">Price</label>
-                            <input id="price" class="form-control" type="number" step="100" min="0" placeholder=" price" name="listing[price]"/>
+                            <input id="price" type="number" class="form-control" step="100" min="0" placeholder=" price" name="listing[price]"  required/>
+                            <div class="invalid-feedback">
+                                write in multiple of 100
+                            </div>
                         </div>
                         
                         <div class="country col-12 col-sm-7">
                             <label for="country" class="form-label">country</label>
-                            <input type="text" id="country" class="form-control" placeholder="write your country" name="listing[country]"/><br>
+                            <input type="text" id="country" class="form-control" placeholder="write your country" name="listing[country]" required/>
+                            <div class="valid-feedback">
+                                That's a great country
+                            </div>
                         </div>
                     
                 </div>
                 
+                <div>
+                    <label for="location" class="form-label">Location</label>
+                    <input type="text" id="location" class="form-control" placeholder="write your location" name="listing[location]" required/>
+                </div>
                 
-                <label for="location" class="form-label">Location</label>
-                <input type="text" id="location" class="form-control" placeholder="write your location" name="listing[location]"/><br>
                 
                 <button class="add-btn">Add</button><br>
             </form>

@@ -23,8 +23,8 @@ const ListingSchema=new mongoose.Schema({
       },
       url:{
          type:String,
-         default:"https://unsplash.com/photos/a-house-with-a-blue-front-door-and-a-brown-front-door-xaqsFfoEq3o",
-         set:(v)=> v===""?"https://unsplash.com/photos/a-house-with-a-blue-front-door-and-a-brown-front-door-xaqsFfoEq3o":v
+         default:"https://i.pinimg.com/736x/c7/7e/d7/c77ed723a0f0f4e9375b5e05af9489db.jpg",
+         set:(v)=> v===""?"https://i.pinimg.com/736x/c7/7e/d7/c77ed723a0f0f4e9375b5e05af9489db.jpg":v
       }
       
    },
