@@ -1,5 +1,5 @@
 const mongoose=require("mongoose");
-
+const { Schema } = mongoose;
 
 const ListingSchema=new mongoose.Schema({
    title:{
@@ -31,6 +31,12 @@ const ListingSchema=new mongoose.Schema({
    location :{
       type:String,
       required:true
-   }
+   },
+   reviews:[
+      {
+      type:Schema.Types.ObjectId,
+      ref:"Review",
+      }
+   ],
 });
 module.exports=mongoose.model("listing",ListingSchema);

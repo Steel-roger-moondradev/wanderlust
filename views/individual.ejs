@@ -18,8 +18,64 @@
                 <form action="/<%=list._id %>?_method=delete" class="btns-delete" method="post">
                     <button>Delete</button>
                 </form>
+                <br>
+                <br>
+                
+             </div>
+            <br>
+            <br>
+             <div>
+                <form action="/index/<%=list._id%>/review" method="post" class="needs-validation" novalidate>
+                    <label for="name" class="form-label">Name</label>
+                    <input id="name" type="String" name="review[name]"class="form-control" required>
+
+                    <label for="content" class="form-label">content</label>
+                    <input id="content" type="String" name="review[content]" class="form-control"required >
+
+                   <div class="mb-3">
+    <label for="rating" class="form-label">Ratings</label>
+    <input 
+        id="rating"
+        type="range"
+        min="1"
+        max="5"
+        step="1"
+        name="review[rating]"
+        class="form-range"
+        required>
+</div>
+
+                    <button class="add-btn">Submit review</button><br>
+                </form>
              </div>
             
+             <h3 class="text-center mb-4">All Reviews</h3>
+
+<div class="row">
+    <% for (let review of list.reviews) { %>
+        <div class="col-md-6 mb-6 ">
+            <div class="card card-review shadow-sm mt-3">
+                <div class="card-body">
+                    <h5 class="card-title"><%= review.name %></h5>
+                    <p class="card-text"><%= review.content %></p>
+                </div>
+                <div class="card-footer bg-white border-0">
+                    <small class="text-muted">
+                        Rating: <strong><%= review.rating %>/5</strong>
+                    </small>
+                    <br><br>
+                    <form action="/index/<%=list._id%>/review/<%=review._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-outline-dark">Delete  review</button><br>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    <% } %>
+</div>
+
+             
+             
         </div>
         </div>
       </div>

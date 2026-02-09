@@ -11,3 +11,11 @@ const Schema=Joi.object({
 
 });
 module.exports=Schema;
+
+const reviewSchema = Joi.object({
+    name: Joi.string().required(),
+    content: Joi.string().required(),
+    rating: Joi.number().min(1).max(5).required(),
+}).required();
+
+module.exports = {  reviewSchema,Schema };
