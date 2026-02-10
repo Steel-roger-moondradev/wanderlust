@@ -12,10 +12,10 @@
              <p class="card-text"><%=list.location %></p>
              <br>
              <div class="btns-edit-delete ">
-                <form action="/edit/<%=list._id %>" class="btns-edit" method="get">
+                <form action="/index/edit/<%=list._id %>" class="btns-edit" method="get">
                     <button>Edit</button>
                 </form>
-                <form action="/<%=list._id %>?_method=delete" class="btns-delete" method="post">
+                <form action="/index/<%=list._id %>?_method=delete" class="btns-delete" method="post">
                     <button>Delete</button>
                 </form>
                 <br>

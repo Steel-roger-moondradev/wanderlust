@@ -1,6 +1,6 @@
 const mongoose=require("mongoose");
 const { Schema } = mongoose;
-
+const Review=require("./review");
 const ListingSchema=new mongoose.Schema({
    title:{
       type:String,
@@ -39,4 +39,12 @@ const ListingSchema=new mongoose.Schema({
       }
    ],
 });
+
+//deletion of review before index deletion
+ListingSchema.post("findOneAndDelete",async function (doc){
+    if(doc){
+        await Review.deleteMany({_id:{$in:doc.reviews}});
+    }
+})
+
 module.exports=mongoose.model("listing",ListingSchema);
