@@ -1,10 +1,13 @@
 const express=require("express");
 const app=express();
 const mongoose=require("mongoose");
+const session = require('express-session')
+const flash=require("connect-flash");
 const path=require("path");
 const methodOverride =require("method-override");
 const engine=require("ejs-mate");
 const ExpressError=require("./util/ExpressError.js");
+
 
 const index=require("./routes/index.js");
 const reviews=require("./routes/review.js");
@@ -12,9 +15,22 @@ const reviews=require("./routes/review.js");
 app.use(express.static(path.join(__dirname,"public")));
 app.engine('ejs',engine);
 app.set("view engine","ejs");
+
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie:{
+    httpOnly:true,
+    expires:Date.now()+60*60*1000,
+    maxAge:60*60*1000,
+  }
+}));
+
+app.use(flash());
 
 async function main(){
    await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
@@ -25,6 +41,12 @@ main()
     console.log(err);
 });
 
+
+app.use((req,res,next)=>{
+    res.locals.success=req.flash("success");
+    res.locals.error=req.flash("error");
+    next();
+})
 
 app.use("/index/:index_id/review",reviews);
 app.use("/index",index);

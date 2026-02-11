@@ -29,7 +29,11 @@ router.get("/new",(req,res)=>{
 
 router.post("/new",validateListing,wrapasync(async(req,res,next)=>{
     let list=new listing(req.body.listing);
-     await list.save();
+    if(list){
+        req.flash("success","listing is created successfully");
+        await list.save();
+    }
+     
     res.redirect("/index");
 }))
 
@@ -43,6 +47,9 @@ router.get("/edit/:id",wrapasync(async(req,res,next)=>{
 router.patch("/:id",validateListing,wrapasync(async(req,res,next)=>{
     let {id}=req.params;
     let list=req.body.listing;
+     if(list&&id){
+        req.flash("success","your list is edited successfully");
+    }
     if(!req.body.listing){
         throw new ExpressError(400,"enter valid data");
     }
@@ -52,15 +59,24 @@ router.patch("/:id",validateListing,wrapasync(async(req,res,next)=>{
 //delete route
 router.delete("/:id",wrapasync(async(req,res,next)=>{
     let {id}=req.params;
-    await listing.findByIdAndDelete(id);
+    if(id){
+        req.flash("success","your list is deleted successfully");
+        await listing.findByIdAndDelete(id);
+    }
+    
     res.redirect(`/index`);
 }))
 //individual route
 router.get("/:id",wrapasync(async(req,res,next)=>{
     let {id}=req.params;
     let list=await listing.findById(id).populate("reviews");
-    
+    if(!list){
+        req.flash("error","list does not exist");
+        res.redirect("/index");
+    }
+    else{
     res.render("individual.ejs",{list});
+    }
 }))
 
 module.exports=router;
