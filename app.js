@@ -7,6 +7,10 @@ const path=require("path");
 const methodOverride =require("method-override");
 const engine=require("ejs-mate");
 const ExpressError=require("./util/ExpressError.js");
+const passport=require("passport");
+const LocalStrategy=require("passport-local");
+const User=require("./models/User.js");
+
 
 
 const index=require("./routes/index.js");
@@ -31,6 +35,14 @@ app.use(session({
 }));
 
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 async function main(){
    await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
