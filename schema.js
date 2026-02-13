@@ -10,7 +10,6 @@ const Schema=Joi.object({
     location:Joi.string().required()
 
 });
-module.exports=Schema;
 
 const reviewSchema = Joi.object({
     name: Joi.string().required(),
@@ -18,4 +17,10 @@ const reviewSchema = Joi.object({
     rating: Joi.number().min(1).max(5).required(),
 }).required();
 
-module.exports = {  reviewSchema,Schema };
+const signupSchema=Joi.object({
+    username:Joi.string().required(),
+    email:Joi.string().required(),
+    password:Joi.string().required(),
+}).required();
+
+module.exports = {  reviewSchema,Schema,signupSchema};

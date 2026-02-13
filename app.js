@@ -13,8 +13,10 @@ const User=require("./models/User.js");
 
 
 
-const index=require("./routes/index.js");
-const reviews=require("./routes/review.js");
+const indexrouter=require("./routes/index.js");
+const reviewsrouter=require("./routes/review.js");
+const userrouter=require("./routes/user.js");
+
 
 app.use(express.static(path.join(__dirname,"public")));
 app.engine('ejs',engine);
@@ -60,9 +62,9 @@ app.use((req,res,next)=>{
     next();
 })
 
-app.use("/index/:index_id/review",reviews);
-app.use("/index",index);
-
+app.use("/index/:index_id/review",reviewsrouter);
+app.use("/index",indexrouter);
+app.use("/user",userrouter);
 
 app.all("*",(req,res,next)=>{
     next(new ExpressError(404,"page not found"));
@@ -73,4 +75,3 @@ app.use((err,req,res,next)=>{
 });
 
 app.listen("8080",()=>{console.log("listening")});
-
