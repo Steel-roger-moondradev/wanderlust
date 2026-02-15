@@ -7,6 +7,15 @@
         <a class="nav-link" href="/index">All listings</a>
         <a class="nav-link" href="/index/new">Add new listings</a>
       </div>
+      <div class="navbar-nav ms-auto">
+        <% if(!curruser){ %>
+        <a class="nav-link" href="/user/signup">Signup</a>
+        <a class="nav-link" href="/user/login">Login</a>
+        <% }%>
+        <% if(curruser){ %>
+        <a class="nav-link" href="/user/logout">Logout</a>
+        <% } %>
+      </div>
     </div>
   </div>
 </nav>

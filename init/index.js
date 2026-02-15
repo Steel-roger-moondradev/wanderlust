@@ -13,5 +13,6 @@ main().then(() => console.log('Connected!'))
 
 async function initdb(){
   await listing.deleteMany({});
-  await listing.insertMany(data);
+  const newdata=data.map((obj)=>({...obj,owner:"69919f1b7b97dd5c484206f8"}));
+  await listing.insertMany(newdata);
 }

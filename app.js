@@ -12,7 +12,6 @@ const LocalStrategy=require("passport-local");
 const User=require("./models/User.js");
 
 
-
 const indexrouter=require("./routes/index.js");
 const reviewsrouter=require("./routes/review.js");
 const userrouter=require("./routes/user.js");
@@ -59,6 +58,7 @@ main()
 app.use((req,res,next)=>{
     res.locals.success=req.flash("success");
     res.locals.error=req.flash("error");
+    res.locals.curruser=req.user;
     next();
 })
 

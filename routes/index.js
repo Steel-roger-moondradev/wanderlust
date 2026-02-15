@@ -5,6 +5,7 @@ const wrapasync= require("../util/WrapAsync.js");
 const ExpressError=require("../util/ExpressError.js");
 const {reviewSchema,Schema}=require("../schema.js");
 const Review=require("../models/review.js");
+const {isloggedin}=require("../middlewares.js");
 
 //function for validating 
 
@@ -23,12 +24,13 @@ router.get("/",wrapasync(async(req,res,next)=>{
 }));
 
 //new route
-router.get("/new",(req,res)=>{
+router.get("/new",isloggedin,(req,res)=>{
     res.render("new.ejs");
 })
 
-router.post("/new",validateListing,wrapasync(async(req,res,next)=>{
+router.post("/new",isloggedin,validateListing,wrapasync(async(req,res,next)=>{
     let list=new listing(req.body.listing);
+    list.owner=req.user._id;
     if(list){
         req.flash("success","listing is created successfully");
         await list.save();
@@ -38,13 +40,13 @@ router.post("/new",validateListing,wrapasync(async(req,res,next)=>{
 }))
 
 //edit route
-router.get("/edit/:id",wrapasync(async(req,res,next)=>{
+router.get("/edit/:id",isloggedin,wrapasync(async(req,res,next)=>{
     let {id}=req.params;
     let list=await listing.findById(id);
     res.render("edit.ejs",{list});
 }))
 
-router.patch("/:id",validateListing,wrapasync(async(req,res,next)=>{
+router.patch("/:id",isloggedin,validateListing,wrapasync(async(req,res,next)=>{
     let {id}=req.params;
     let list=req.body.listing;
      if(list&&id){
@@ -57,7 +59,7 @@ router.patch("/:id",validateListing,wrapasync(async(req,res,next)=>{
     res.redirect(`/index/${id}`);
 }))
 //delete route
-router.delete("/:id",wrapasync(async(req,res,next)=>{
+router.delete("/:id",isloggedin,wrapasync(async(req,res,next)=>{
     let {id}=req.params;
     if(id){
         req.flash("success","your list is deleted successfully");
@@ -69,7 +71,7 @@ router.delete("/:id",wrapasync(async(req,res,next)=>{
 //individual route
 router.get("/:id",wrapasync(async(req,res,next)=>{
     let {id}=req.params;
-    let list=await listing.findById(id).populate("reviews");
+    let list=await listing.findById(id).populate("reviews").populate("owner");
     if(!list){
         req.flash("error","list does not exist");
         res.redirect("/index");
