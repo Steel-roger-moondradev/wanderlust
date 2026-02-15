@@ -13,6 +13,7 @@
             <p class="card-text"><%=list.country %></p>
              <p class="card-text"><%=list.location %></p>
              <br>
+             <% if((curruser)&&(list.owner._id.equals(curruser._id))){%>
              <div class="btns-edit-delete ">
                 <form action="/index/edit/<%=list._id %>" class="btns-edit" method="get">
                     <button>Edit</button>
@@ -24,6 +25,7 @@
                 <br>
                 
              </div>
+             <%}%>
             <br>
             <br>
              <div>
