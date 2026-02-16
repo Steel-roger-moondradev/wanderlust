@@ -12,7 +12,6 @@ const Schema=Joi.object({
 });
 
 const reviewSchema = Joi.object({
-    name: Joi.string().required(),
     content: Joi.string().required(),
     rating: Joi.number().min(1).max(5).required(),
 }).required();

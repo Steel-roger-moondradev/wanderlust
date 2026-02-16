@@ -13,7 +13,7 @@
             <p class="card-text"><%=list.country %></p>
              <p class="card-text"><%=list.location %></p>
              <br>
-             <% if((curruser)&&(list.owner._id.equals(curruser._id))){%>
+            <% if(curruser && list.owner._id.equals(curruser._id)){%>
              <div class="btns-edit-delete ">
                 <form action="/index/edit/<%=list._id %>" class="btns-edit" method="get">
                     <button>Edit</button>
@@ -25,13 +25,14 @@
                 <br>
                 
              </div>
-             <%}%>
+             <% }%>
+             
             <br>
             <br>
+            <% if(loggedin) {%>
              <div>
+                <h3>Leave your reviews</h3>
                 <form action="/index/<%=list._id%>/review" method="post" class="needs-validation" novalidate>
-                    <label for="name" class="form-label">Name</label>
-                    <input id="name" type="String" name="review[name]"class="form-control" required>
 
                     <label for="content" class="form-label">content</label>
                     <input id="content" type="String" name="review[content]" class="form-control"required >
@@ -49,10 +50,12 @@
         required>
 </div>
 
+
                     <button class="add-btn">Submit review</button><br>
                 </form>
              </div>
-            
+            <%}%>
+             <hr>
              <h3 class="text-center mb-4">All Reviews</h3>
 
 <div class="row">
@@ -60,7 +63,7 @@
         <div class="col-md-6 mb-6 ">
             <div class="card card-review shadow-sm mt-3">
                 <div class="card-body">
-                    <h5 class="card-title"><%= review.name %></h5>
+                    <p class="card-text"><%= review.author.username %></p>
                     <p class="card-text"><%= review.content %></p>
                 </div>
                 <div class="card-footer bg-white border-0">
@@ -76,9 +79,7 @@
             </div>
         </div>
     <% } %>
-</div>
-
-             
+</div>       
              
         </div>
         </div>

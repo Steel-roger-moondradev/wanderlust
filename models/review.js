@@ -2,7 +2,6 @@ const mongoose=require("mongoose");
 const {Schema}=mongoose;
 
 const reviewSchema=new Schema({
-    name:String,
     content:String,
     rating:{
         type:Number,
@@ -12,6 +11,10 @@ const reviewSchema=new Schema({
     created_at:{
         type:Date,
         default:Date.now,
+    },
+    author:{
+        type:Schema.Types.ObjectId,
+        ref:"User",
     }
 });
 const Review=mongoose.model("Review",reviewSchema);
