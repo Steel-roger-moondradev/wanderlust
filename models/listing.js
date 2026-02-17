@@ -17,16 +17,8 @@ const ListingSchema=new mongoose.Schema({
       type:String
    },
    image:{
-      filename:{
-         type:String,
-         default:"listingimage"
-      },
-      url:{
-         type:String,
-         default:"https://i.pinimg.com/736x/c7/7e/d7/c77ed723a0f0f4e9375b5e05af9489db.jpg",
-         set:(v)=> v===""?"https://i.pinimg.com/736x/c7/7e/d7/c77ed723a0f0f4e9375b5e05af9489db.jpg":v
-      }
-      
+      url:String,
+      filename:String,
    },
    location :{
       type:String,
@@ -41,7 +33,27 @@ const ListingSchema=new mongoose.Schema({
    owner:{
       type:Schema.Types.ObjectId,
       ref:"User"
-   }
+   },
+  category: {
+        type: String,
+        enum: [
+            'trending',
+            'all',
+            'lake',
+            'design',
+            'desert',
+            'view',
+            'historic',
+            'pool',
+            'mountain',
+            'forest',
+            'beach',
+            'snow',
+            'camping',
+            'city'
+        ],
+        required: true
+    },
 });
 
 //deletion of review before index deletion

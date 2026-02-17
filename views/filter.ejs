@@ -1,8 +1,8 @@
-<% layout("layouts/boilerplate") %>
-
-<div class="types-wrapper">
+<%layout("layouts/boilerplate") %>
+   <div class="types-wrapper">
+     
     <button class="scroll-btn left">&#10094;</button>
-    &nbsp; &nbsp;
+   &nbsp; &nbsp;
     <div class="types">
         <div class="types-inner d-flex gap-4 align-items-center" style="padding: 2rem;">
 
@@ -105,37 +105,38 @@
             </a>
 
         </div>
+         
     </div>
     &nbsp; &nbsp;
     <button class="scroll-btn right">&#10095;</button>
 </div>
-
-<br>
-
-<div class="row justify-content-evenly g-4">
-    <% for(let list of lists){ %>
-        <div class="col-auto">
-            <a href="/index/<%= list._id%>" class="card-link-individual"> 
-                <div class="card h-100" style="width: 18rem;">
-                    <div class="image-cards h-100">
-                        <% if(list.image && list.image.url){ %>
-                            <img src="<%= list.image.url %>" class="card-img-top" alt="<%= list.title %>"> 
-                        <% } else { %>
-                            <div class="card-img-placeholder bg-light d-flex align-items-center justify-content-center">
-                                <span>No Image</span>
+    
+    
+    <br>
+    
+        <div class="row justify-content-evenly g-4">
+            <% for(list of lists){ %>
+                <div class=" col-auto ">
+                    <a href="/index/<%= list._id%>" class="card-link-individual" > 
+                        <div class="card h-100 " style="width: 18rem;">
+                            <div class="image-cards h-100">
+                            <% if(list.image.url){%>
+                                    <img src="<%=list.image.url%>" class="card-img-top" alt="..."> 
+                                <%}else{%>
+                                    <div class="card-img-placeholder bg-light"></div> 
+                            <% }%>
+                                
                             </div>
-                        <% } %>
-                    </div>
-                    <div class="card-body">
-                        <div class="card-text">
-                            <p><b><%= list.title %></b></p>
-                            <p>&#8377;<%= list.price.toLocaleString("en-IN") %>/night</p>
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <p><b><%=list.title %></b></p>
+                                    <p>&#8377;<%=list.price.toLocaleString("en-IN")%>/night</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </a>
+                    </a>
+            </div>
+            <br><br>
+        <% } %>
         </div>
-    <% } %>
-</div>
-
-<script src="/js/slider.js"></script>
+       <script src="/js/slider.js"></script>

@@ -6,8 +6,10 @@ const Schema=Joi.object({
     country:Joi.string().required(),
     image:Joi.object({
         url:Joi.string().allow("",null),
+        filename:Joi.string(),
     }),
-    location:Joi.string().required()
+    location:Joi.string().required(),
+    category:Joi.string().required(),
 
 });
 

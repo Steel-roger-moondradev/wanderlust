@@ -12,6 +12,7 @@ const reviewcontrollers=require("../controllers/review.js");
 //review view route
 router.post("/",isloggedin,validatereview,wrapasync(reviewcontrollers.createReview));
 //deleting the review
-router.delete("/:id",isloggedin,isAuthor,wrapasync(reviewcontrollers.destroyReview));
+router.route("/:id")
+.delete(isloggedin,isAuthor,wrapasync(reviewcontrollers.destroyReview));
 
 module.exports=router;

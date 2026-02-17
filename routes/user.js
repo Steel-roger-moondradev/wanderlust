@@ -8,17 +8,19 @@ const { nextUrl } = require("../middlewares");
 const {validateuser}=require("../middlewares.js");
 const usercontrollers=require("../controllers/user.js")
 
-router.get("/signup",(req,res)=>{
+router.route("/signup")
+.get((req,res)=>{
     res.render("user/signup");
 })
+.post(validateuser,usercontrollers.signUpRoute);
 
-router.post("/signup",validateuser,usercontrollers.signUpRoute);
-
-router.get("/login",(req,res)=>{
+router.route("/login")
+.get((req,res)=>{
     res.render("user/login");
 })
-router.post("/login",nextUrl,passport.authenticate('local',{failureRedirect:"/login",failureFlash:true}),
+.post(nextUrl,passport.authenticate('local',{failureRedirect:"/login",failureFlash:true}),
 usercontrollers.loginRoute);
 
-router.get("/logout",usercontrollers.logoutRoute);
+router.route("/logout")
+.get(usercontrollers.logoutRoute);
 module.exports=router;
