@@ -7,6 +7,7 @@ const express=require("express");
 const app=express();
 const mongoose=require("mongoose");
 const session = require('express-session')
+const MongoStore = require('connect-mongo').default;
 const flash=require("connect-flash");
 const path=require("path");
 const methodOverride =require("method-override");
@@ -29,8 +30,24 @@ app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride('_method'));
+
+let dburl=process.env.MONGO_ATLAS;
+
+const store= MongoStore.create({
+    mongoUrl:dburl,
+    crypto:{
+        secret:process.env.SECRET,
+    },
+    touchAfter:24*3600,
+})
+store.on("error",(err)=>{
+    console.log("Mongo Session Store Error:", err);
+});
+
+
 app.use(session({
-  secret: 'keyboard cat',
+  store,
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie:{
@@ -39,6 +56,9 @@ app.use(session({
     maxAge:60*60*1000,
   }
 }));
+
+
+
 
 app.use(flash());
 app.use(passport.initialize());
@@ -50,8 +70,17 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
+// async function main(){
+//    await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
+// };
+// main()
+// .then((res)=>{console.log("connection successfull");})
+// .catch((err)=>{console.log(err);
+//     console.log(err);
+// });
+
 async function main(){
-   await mongoose.connect('mongodb://127.0.0.1:27017/wanderlust');
+   await mongoose.connect(dburl);
 };
 main()
 .then((res)=>{console.log("connection successfull");})

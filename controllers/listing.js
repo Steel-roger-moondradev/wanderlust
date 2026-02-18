@@ -73,3 +73,44 @@ module.exports.individualRoute=async(req,res,next)=>{
     res.render("individual.ejs",{list});
     }
 };
+
+module.exports.rendersearchfile= async (req, res) => {
+    const q = req.query.q;
+
+    const lists = await listing.find(
+        { $text: { $search: q } },
+        { score: { $meta: "textScore" } }
+    ).sort({ score: { $meta: "textScore" } });
+
+    res.render("index.ejs", {
+        lists,
+        currentCategory: null
+    });
+};
+
+module.exports.renderfilebyicon= async (req, res) => {
+    try {
+        const category = req.params.category.toLowerCase();
+        let lists;
+        let currentCategory = category;
+        
+        if (category === 'all') {
+            lists = await listing.find({});
+        } else {
+            // Case-insensitive search
+            lists = await listing.find({ 
+                category: { $regex: new RegExp(`^${category}$`, 'i') } 
+            });
+        }
+        
+        res.render('filter.ejs', { 
+            lists, 
+            currentCategory 
+        });
+        
+    } catch (error) {
+        console.error(error);
+        req.flash('error', 'Something went wrong!');
+        res.redirect('/index');
+    }
+};

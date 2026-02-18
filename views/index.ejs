@@ -1,8 +1,7 @@
 <% layout("layouts/boilerplate") %>
-
-<div class="types-wrapper">
+<div class="container" style="display:flex; align-items:center;">
+    <div class="types-wrapper">
     <button class="scroll-btn left">&#10094;</button>
-    &nbsp; &nbsp;
     <div class="types">
         <div class="types-inner d-flex gap-4 align-items-center" style="padding: 2rem;">
 
@@ -105,12 +104,21 @@
             </a>
 
         </div>
+      <button class="scroll-btn right">&#10095;</button>
     </div>
-    &nbsp; &nbsp;
-    <button class="scroll-btn right">&#10095;</button>
+    
+</div>
+<br>
+<div class="tax-toggle">
+    <span>Price after taxing</span>
+
+    <div class="form-check form-switch m-0">
+        <input class="form-check-input" type="checkbox" id="taxSwitch">
+    </div>
+</div>
 </div>
 
-<br>
+
 
 <div class="row justify-content-evenly g-4">
     <% for(let list of lists){ %>
@@ -129,7 +137,14 @@
                     <div class="card-body">
                         <div class="card-text">
                             <p><b><%= list.title %></b></p>
-                            <p>&#8377;<%= list.price.toLocaleString("en-IN") %>/night</p>
+                            <div class="tax-without" style="margin-bottom:0.5rem;">
+                                <p> <b>&#8377;<%= list.price.toLocaleString("en-IN") %></b>/night</p>
+                            </div>
+                            <div class="tax-with" style="display:none;margin-bottom:0.5rem;">
+                                <% let newprice=list.price+0.18*list.price%>
+                                <p> <b>&#8377;<%= newprice.toLocaleString("en-IN") %> </b>/night with taxes</p>
+                            </div>
+                                <p><%=list.location%> ,&nbsp; <%=list.country%> <i class="fa-solid fa-location-dot location-icon"></i></p>
                         </div>
                     </div>
                 </div>
@@ -138,4 +153,5 @@
     <% } %>
 </div>
 
+<script src="/js/taxswitch.js"></script>
 <script src="/js/slider.js"></script>

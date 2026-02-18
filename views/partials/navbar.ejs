@@ -6,6 +6,19 @@
         <a class="nav-link" href="/index">Explore</a>
         <a class="nav-link" href="/index">All listings</a>
       </div>
+      <form class="airbnb-search offset-1"  action="/index/search" method="GET">
+    <div class="search-field">
+        <label>Where</label>
+        <input type="text" name="q" placeholder="Write in small letters with full name" autocomplete="off">
+    </div>
+
+    <button type="submit" class="search-btn">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+
+</form>
+
+
       <div class="navbar-nav ms-auto">
         <a class="nav-link" href="/index/new">Add new listings</a>
         <% if(!curruser){ %>
